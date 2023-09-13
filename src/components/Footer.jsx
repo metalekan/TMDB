@@ -5,8 +5,8 @@ import { IoLogoFacebook, IoLogoInstagram, IoLogoTwitter, IoLogoYoutube } from 'r
 
 const Footer = () => {
   return (
-    <footer className='w-full flex justify-center my-[rem] bg-[#F4F5F7]'>
-      <div className='w-[492px] h-[145.43px] flex flex-col items-center justify-between'>
+    <footer className='w-full px-3 flex justify-center my-[rem] bg-[#F4F5F7]'>
+      <div className='w-[550px] h-[145.43px] flex flex-col items-center justify-between'>
         <ul className="flex gap-8 text-gray-900">
           <a href="/">
             <IoLogoFacebook />
