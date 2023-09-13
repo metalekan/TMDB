@@ -28,14 +28,14 @@ const Details = () => {
     }
 
     useEffect(() => {
-        setTimeout(() => { searchMovieById() }, 500)
+        setTimeout(() => { searchMovieById() }, 2000)
     }, [])
 
     const { title, genres, overview, poster_path, release_date, runtime, revenue, budget, status } = findMovie
 
     return (
-        <section className='w-full min-h-screen flex items-center'>
-            <nav className="w-[16%] hidden xl:flex">
+        <section className='w-full min-h-screen flex items-center bg-[#F4F5F7]'>
+            <nav className="w-[16%] h-screen hidden xl:flex">
                 <ul className="h-full flex flex-col justify-around items-center px-4 border rounded-r-[3rem]">
                     <div className='flex gap-4 items-center'>
                         <div className='bg-rose-700 w-[50px] h-[50px] rounded-full grid place-content-center'>
@@ -103,7 +103,7 @@ const Details = () => {
                                         <div className="flex gap-3">
                                             {
                                                 genres.map((genre, index) => (
-                                                    <span key={index} className='text-rose-700 text-sm font-semibold p-1 border border-rose-200 rounded-full'>{genre.name}</span>
+                                                    <span key={index} className='text-rose-700 text-sm font-semibold p-1 px-2 border border-rose-200 rounded-full'>{genre.name}</span>
                                                 ))
                                             }
 
@@ -116,8 +116,8 @@ const Details = () => {
                                         <p>Budget : <span className='text-rose-600'>{`$${budget.toLocaleString()}`}</span></p>
                                         <p>Revenue : <span className='text-rose-600'>{`$${revenue.toLocaleString()}`}</span></p>
                                     </div>
-                                    <div className="border rounded-md py-2">
-                                        <span className='p-2 w-full bg-rose-700 rounded-md'>Top rated movie</span>
+                                    <div className="border rounded-md py-2 my-4">
+                                        <span className='p-2 w-full bg-rose-700 rounded-md text-white'>Top rated movie</span>
                                         <span className='p-2'>Awards & nominations</span>
                                     </div>
                                 </div>
@@ -128,12 +128,20 @@ const Details = () => {
                                         <span>350k</span>
                                     </div>
                                     <div className="flex flex-col gap-2">
-                                        <button className='p-2 w-full bg-rose-700 rounded-md'>See Showtimes</button>
+                                        <button className='p-2 w-full bg-rose-700 rounded-md text-white'>See Showtimes</button>
                                         <button className='p-2 w-full bg-rose-200 border border-rose-700 rounded-md'>More watch options</button>
                                     </div>
                                 </div>
                             </div>
-                        </div> : <div className="spinner self-center justify-self-center"></div>
+                        </div> : <div className="honeycomb">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
                 }
 
             </div>
