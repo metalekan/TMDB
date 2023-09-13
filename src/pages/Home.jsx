@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import Movies from '../components/Movies'
 import Footer from '../components/Footer'
@@ -9,20 +10,23 @@ import { HiMenuAlt4, HiSearch } from 'react-icons/hi'
 
 
 const Home = () => {
-
-
+    const navigate = useNavigate()
+    const delay = () => {
+        navigate("*");
+    };
     const API_URL = 'https://api.themoviedb.org/3/discover/movie?api_key=e0638008799910efda66a9cf613f9d53';
     const API_SEARCH = 'https://api.themoviedb.org/3/search/movie?api_key=e0638008799910efda66a9cf613f9d53&query';
 
     const [movieList, setMovieList] = useState(null)
     const [searchedMovie, setSearchedMovie] = useState(null)
+
     const fetchMovie = async () => {
         try {
             const res = await fetch(API_URL);
             const data = await res.json();
             setMovieList(data.results)
         } catch (error) {
-            console.log(error)
+            delay();
         }
     }
 
@@ -36,7 +40,7 @@ const Home = () => {
                 const data = await res.json();
                 setMovieList(data.results)
             } catch (error) {
-                console.log('error')
+                delay();
             }
         }
     }
@@ -47,8 +51,8 @@ const Home = () => {
 
 
     return (
-        <div className='flex flex-col'>
-            <header className='px-1 md:px-8 py-4'>
+        <div className='flex flex-col bg-[#F4F5F7] min-h-screen'>
+            <header className='px-1 md:px-8 py-4 bg-slate-50'>
                 <nav className='flex items-center justify-between'>
                     <div className='flex items-center md:gap-2 md:basis-1/4'>
                         <div className='bg-rose-700 w-[50px] h-[50px] rounded-full grid place-content-center'>
