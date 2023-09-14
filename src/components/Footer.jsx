@@ -22,12 +22,12 @@ const Footer = () => {
           </a>
         </ul>
 
-        <ul className='w-full flex justify-between font-semibold text-gray-900'>
+        <ul className='w-full flex justify-between font-[500] text-sm md:text-md text-gray-900'>
           <li>Conditions of Use</li>
           <li>Privacy & Policy</li>
           <li>Press Room</li>
         </ul>
-        <p className='text-gray-500 text-sm'>{`©${new Date().getFullYear()} Showbox by metalekan`}</p>
+        <p className='text-gray-500 text-[12px]'>{`©${new Date().getFullYear()} Showbox by metalekan`}</p>
       </div>
     </footer>
   )

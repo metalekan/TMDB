@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, Link } from 'react-router-dom'
 
 import { BiSolidStar, BiHome, BiCameraMovie, BiLogOut } from 'react-icons/bi'
 import { PiTelevision, PiTelevisionBold } from 'react-icons/pi'
@@ -37,34 +37,34 @@ const Details = () => {
         <section className='w-full min-h-screen flex items-center bg-[#F4F5F7]'>
             <nav className="w-[16%] h-screen hidden xl:flex">
                 <ul className="h-full flex flex-col justify-around items-center px-4 border rounded-r-[3rem]">
-                    <div className='flex gap-4 items-center'>
+                    <Link to="/" className='flex gap-4 items-center'>
                         <div className='bg-rose-700 w-[50px] h-[50px] rounded-full grid place-content-center'>
                             <PiTelevisionBold className='text-white text-xl' />
                         </div>
                         <span className='font-semibold'>MovieBox</span>
-                    </div>
+                    </Link>
                     <li>
-                        <a href="" className='text-[#666666] flex gap-4'>
+                        <a href="/" className='text-[#666666] flex gap-4 md:w-[150px]'>
                             <BiHome className='text-[25px]' />
                             <span>Home</span>
 
                         </a>
                     </li>
                     <li>
-                        <a href="" className='text-[#666666] flex gap-4'>
+                        <a href="/" className='text-[#666666] flex gap-4 md:w-[150px]'>
                             <BiCameraMovie className='text-[25px]' />
                             <span className='text-rose-700 font-bold text-md'>Movies</span>
                         </a>
                     </li>
                     <li>
-                        <a href="" className='text-[#666666] flex gap-4'>
+                        <a href="/" className='text-[#666666] flex gap-4 md:w-[150px]'>
                             <PiTelevision className='text-[25px]' />
                             <span>TV Series</span>
                         </a>
 
                     </li>
                     <li>
-                        <a href="" className='text-[#666666] flex gap-4'>
+                        <a href="/" className='text-[#666666] flex gap-4 md:w-[150px]'>
                             <MdOutlineCalendarMonth className='text-[25px]' />
                             <span>Upcoming</span>
                         </a>
@@ -76,7 +76,7 @@ const Details = () => {
                         <span className='text-[10px] text-rose-900 bg-gray-300 p-1 rounded-lg'>Start playing</span>
                     </div>
                     <li>
-                        <a href="" className='text-[#666666] flex gap-4'>
+                        <a href="/" className='text-[#666666] flex gap-4 md:w-[150px]'>
                             <BiLogOut className='text-[25px]' />
                             <span>Log out</span>
                         </a>
@@ -84,44 +84,45 @@ const Details = () => {
                     </li>
                 </ul>
             </nav>
-            <div className="w-full h-full flex items-center justify-center p-4">
+            <div className="w-full h-full flex items-center justify-center p-1 xl:p-4">
                 {
                     findMovie ?
                         <div className="w-full">
                             <div className='mb-8'>
-                                <img className='flex object-cover md:h-[50vh] w-full rounded-lg' src={`https://image.tmdb.org/t/p/original/${poster_path}`} alt="" />
+                                <img className='flex object-cover bg-center hover:bg-top h-[50vh] w-full rounded-xl' src={`https://image.tmdb.org/t/p/original/${poster_path}`} alt={title} />
                             </div>
-                            <div className="flex flex-col md:flex-row">
+                            <div className="flex flex-col md:flex-row px-3 md:p-0">
                                 <div className="basis-[70%] flex flex-col justify-between">
-                                    <div className="flex md:flex-row flex-col items-center">
-                                        <div className="flex md:flex-row flex-col items-center font-semibold gap-4 me-4">
-                                            <span className=' text-lg'>{title}</span>
+                                    <div className="flex md:flex-row flex-col items-center text-[#333333]">
+                                        <div className="flex md:flex-row flex-col items-center text-sm md:text-md font-semibold gap-4 me-4">
+                                            <span className=''>{title}</span>
                                             <span>{release_date}</span>
-
-                                            <span>{`${Math.floor(runtime / 60)}h`}</span>
+                                            <span>{`${Math.floor(runtime / 60)}h  ${runtime % 60}m`}</span>
                                         </div>
-                                        <div className="flex gap-3">
+                                        <div className="flex flex-wrap gap-3 mt-2 md:mt-0">
                                             {
                                                 genres.map((genre, index) => (
                                                     <span key={index} className='text-rose-700 text-sm font-semibold p-1 px-2 border border-rose-200 rounded-full'>{genre.name}</span>
                                                 ))
                                             }
-
-
                                         </div>
                                     </div>
-                                    <p className="leading-8 my-4">{overview}</p>
-                                    <div className="flex flex-col gap-4">
+                                    <p className="leading-8 my-4 text-sm md:text-md text-[#333333]">{overview}</p>
+                                    <div className="flex flex-col text-sm md:text-md gap-4">
 
-                                        <p>Budget : <span className='text-rose-600'>{`$${budget.toLocaleString()}`}</span></p>
-                                        <p>Revenue : <span className='text-rose-600'>{`$${revenue.toLocaleString()}`}</span></p>
+                                        <p>Budget : <span className='text-rose-600 '>{
+                                            budget ? `$${budget.toLocaleString()}` : `Not available`
+                                        }</span></p>
+                                        <p>Revenue : <span className='text-rose-600'>{
+                                            revenue ? `$${revenue.toLocaleString()}` : `Not available`
+                                        }</span></p>
                                     </div>
-                                    <div className="border rounded-md py-2 my-4">
+                                    <div className="border rounded-md py-2 my-4 text-sm md:text-md">
                                         <span className='p-2 w-full bg-rose-700 rounded-md text-white'>Top rated movie</span>
                                         <span className='p-2'>Awards & nominations</span>
                                     </div>
                                 </div>
-                                <div className="basis-[30%] p-6 flex flex-col justify-between">
+                                <div className="basis-[30%] p-6 flex flex-col justify-between text-sm md:text-md">
                                     <div className="flex justify-end items-center gap-4">
                                         <BiSolidStar className="text-[gold]" />
                                         <span>{status}</span>
