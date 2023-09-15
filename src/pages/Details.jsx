@@ -101,7 +101,7 @@ const Details = () => {
                 {
                     findMovie ?
                         <div className="w-full">
-                            <div className='w-full mb-4 overflow-hidden'>
+                            <div className='mb-4 overflow-hidden'>
                                 <ReactPlayer url={`https://www.youtube.com/watch?v=${trailer}`} />
                             </div>
                             <div className="flex flex-col md:flex-row px-3 md:p-0">

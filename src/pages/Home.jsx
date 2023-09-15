@@ -17,7 +17,7 @@ const Home = () => {
         navigate("*");
     };
 
-    const API_URL = `https://api.themoviedb.org/3/trending/movie/day?api_key=e0638008799910efda66a9cf613f9d53`;
+    const API_URL = `https://api.themoviedb.org/3/movie/top_rated?api_key=e0638008799910efda66a9cf613f9d53`;
     const API_SEARCH = `https://api.themoviedb.org/3/search/movie?api_key=e0638008799910efda66a9cf613f9d53&query`;
 
     const [movieList, setMovieList] = useState('')
