@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 
 import { BiSolidStar, BiHome, BiCameraMovie, BiLogOut } from 'react-icons/bi'
-import { PiTelevision, PiTelevisionBold } from 'react-icons/pi'
-import { MdOutlineCalendarMonth } from 'react-icons/md'
+import { PiTelevision, PiTelevisionBold, PiDotOutlineFill, PiTagFill } from 'react-icons/pi'
+import { MdOutlineCalendarMonth, MdMenu } from 'react-icons/md'
+import ReactPlayer from 'react-player/youtube'
 
 
 const Details = () => {
@@ -13,9 +14,11 @@ const Details = () => {
     };
 
     const [findMovie, setFindMovie] = useState("")
+    const [trailer, setTrailer] = useState("")
     const { id } = useParams();
 
     const API_DETAIL = `https://api.themoviedb.org/3/movie/${id}?api_key=e0638008799910efda66a9cf613f9d53`;
+    const VIDEO_DETAIL = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=e0638008799910efda66a9cf613f9d53&append_to_response=videos`;
 
     const searchMovieById = async () => {
         try {
@@ -26,17 +29,27 @@ const Details = () => {
             delay();
         }
     }
+    const searchTrailerById = async () => {
+        try {
+            const res = await fetch(VIDEO_DETAIL);
+            const data = await res.json();
+            setTrailer(data.results[0].key)
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     useEffect(() => {
         setTimeout(() => { searchMovieById() }, 2000)
+        searchTrailerById()
     }, [])
 
-    const { title, genres, overview, poster_path, release_date, runtime, revenue, budget, status } = findMovie
+    const { title, genres, overview, release_date, runtime, revenue, budget, status } = findMovie
 
     return (
-        <section className='w-full min-h-screen flex items-center bg-[#F4F5F7]'>
+        <main className='w-screen min-h-screen flex items-center bg-[#F4F5F7]'>
             <nav className="w-[16%] h-screen hidden xl:flex">
-                <ul className="h-full flex flex-col justify-around items-center px-4 border rounded-r-[3rem]">
+                <ul className="h-full flex flex-col justify-around items-center shadow-xl px-4 border rounded-r-[3rem]">
                     <Link to="/" className='flex gap-4 items-center'>
                         <div className='bg-rose-700 w-[50px] h-[50px] rounded-full grid place-content-center'>
                             <PiTelevisionBold className='text-white text-xl' />
@@ -88,16 +101,18 @@ const Details = () => {
                 {
                     findMovie ?
                         <div className="w-full">
-                            <div className='mb-8'>
-                                <img className='flex object-cover bg-center hover:bg-top h-[50vh] w-full rounded-xl' src={`https://image.tmdb.org/t/p/original/${poster_path}`} alt={title} />
+                            <div className='w-full mb-4 overflow-hidden'>
+                                <ReactPlayer url={`https://www.youtube.com/watch?v=${trailer}`} />
                             </div>
                             <div className="flex flex-col md:flex-row px-3 md:p-0">
                                 <div className="basis-[70%] flex flex-col justify-between">
                                     <div className="flex md:flex-row flex-col items-center text-[#333333]">
-                                        <div className="flex md:flex-row flex-col items-center text-sm md:text-md font-semibold gap-4 me-4">
-                                            <span className=''>{title}</span>
-                                            <span>{release_date}</span>
-                                            <span>{`${Math.floor(runtime / 60)}h  ${runtime % 60}m`}</span>
+                                        <div className="flex flex-row items-center text-sm md:text-md font-semibold gap-4 me-4">
+                                            <span data-testid="movie-title">{title}</span>
+                                            <PiDotOutlineFill/>
+                                            <span data-testid="movie-release-date">{release_date}</span>
+                                            <PiDotOutlineFill/>
+                                            <span data-testid="movie-runtime">{`${Math.floor(runtime / 60)}h  ${runtime % 60}m`}</span>
                                         </div>
                                         <div className="flex flex-wrap gap-3 mt-2 md:mt-0">
                                             {
@@ -107,7 +122,7 @@ const Details = () => {
                                             }
                                         </div>
                                     </div>
-                                    <p className="leading-8 my-4 text-sm md:text-md text-[#333333]">{overview}</p>
+                                    <p className="leading-8 my-4 text-sm md:text-md text-[#333333]" data-testid="movie-overview">{overview}</p>
                                     <div className="flex flex-col text-sm md:text-md gap-4">
 
                                         <p>Budget : <span className='text-rose-600 '>{
@@ -129,8 +144,8 @@ const Details = () => {
                                         <span>350k</span>
                                     </div>
                                     <div className="flex flex-col gap-2">
-                                        <button className='p-2 w-full bg-rose-700 rounded-md text-white'>See Showtimes</button>
-                                        <button className='p-2 w-full bg-rose-200 border border-rose-700 rounded-md'>More watch options</button>
+                                        <button className='p-2 w-full bg-rose-700 rounded-md text-white flex items-center justify-center gap-1'><PiTagFill/>See Showtimes</button>
+                                        <button className='p-2 w-full bg-rose-200 border border-rose-700 rounded-md flex items-center justify-center gap-1'><MdMenu/>More watch options</button>
                                     </div>
                                 </div>
                             </div>
@@ -147,7 +162,7 @@ const Details = () => {
 
             </div>
 
-        </section>
+        </main>
     )
 }
 

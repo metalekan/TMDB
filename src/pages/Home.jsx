@@ -79,7 +79,7 @@ const Home = () => {
                             <HiMenuAlt4 />
                         </div>
                     </div>
-                    {isError ? <div class="warning absolute top-0 right-0 animate__animated animate__bounceIn">
+                    {isError ? <div className="warning absolute top-0 right-0 animate__animated animate__bounceIn">
                         <div className="warning__icon">
                             <svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m13 14h-2v-5h2zm0 4h-2v-2h2zm-12 3h22l-11-19z" fill="#393a37"></path></svg>
                         </div>
@@ -91,9 +91,9 @@ const Home = () => {
                     <h1 className='text-lg md:text-xl font-semibold'>John Wick 3 : <br /> Parabellum</h1>
                     <div className="flex gap-1 items-center">
                     <img src={imdb} className='w-[50px]' loading='lazy' />
-                    <span className='text-[12px]'>7.4 / 10</span>
+                    <span className='text-[12px]'>74 / 100</span>
                     </div>
-                    <p className='text-[12px] md:text-md'>Super-assassin John Wick returns with a $14 million price tag on his head and an army of bounty-hunting killers on his trail. After killing a member of the shadowy international assassin’s guild, the High Table, John Wick is excommunicado, but the world’s most ruthless hit men and women await his every turn.</p>
+                    <p className='text-[12px] md:text-md'>Super-assassin John Wick returns with a $14 million price tag on his head and an army of bounty-hunting killers on his trail. After killing a member of the shadowy international assassin's guild, the High Table, John Wick is excommunicado, but the world's most ruthless hit men and women await his every turn.</p>
                     <button className='bg-rose-800 py-2 px-6 rounded-lg flex items-center w-fit gap-2 text-[12px] md:text-md'>
                         < PiPlayBold/>Watch Trailer</button>
                 </div>
