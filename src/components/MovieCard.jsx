@@ -21,7 +21,7 @@ const MovieCard = ({ movie }) => {
     return (
         <Link to={`/${movie.id}`}>
             <div className='rounded-b-xl hover:scale-105 duration-500' data-testid="movie-card">
-                <img className='w-full object-contain' loading='lazy' data-testid="movie-poster" src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} alt={movie.title} />
+                <img className='w-full h-auto object-contain' loading='lazy' data-testid="movie-poster" src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} alt={movie.title} />
                 <div className="flex flex-col gap-1 mt-2">
                     <span className='text-gray-800 text-[12px]' data-testid="movie-release-date">{movie.release_date}</span>
                     <span className='text-gray-900 text-sm md:text-md font-semibold' data-testid="movie-title">{movie.title}</span>

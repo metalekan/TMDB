@@ -17,7 +17,7 @@ const Movies = ({ movieList }) => {
       </div>
       <div className='grid grid-cols-2 xl:grid-cols-5 min-h-screen gap-8 p-2 md:p-4'>
         {
-          movieList ? movieList.slice(0, 10).map((movie, index) => (
+          movieList ? movieList.map((movie, index) => (
             <MovieCard key={index} movie={movie} />
           ))
             : <div className="honeycomb self-center border-2 justify-self-end">
